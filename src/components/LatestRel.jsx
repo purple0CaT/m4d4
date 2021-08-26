@@ -3,7 +3,7 @@ import Fantasy from '../data/fantasy.json'
 import History from '../data/history.json'
 import Romance from '../data/romance.json'
 import Horror from '../data/horror.json'
-import MyCard from './MyCard'
+import SingBook from './MyCard'
 import { Container ,Row, Col } from "react-bootstrap"
 import Library from './Library'
 import React from 'react'
@@ -27,7 +27,10 @@ class LatestRel extends React.Component{
         <MyCard data={Horror[0]} />
         <MyCard data={Romance[0]} />
         <MyCard data={Fantasy[0]} />
-        <MyCard data={SciFi[0]} /> */}
+        <MyCard data={SciFi[0]} /> */
+        Object.values(this.state).map(categor => <SingBook book={categor[0]}/>)
+        }
+        
         </Row>
 
         <Row >

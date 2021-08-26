@@ -1,4 +1,4 @@
-import MyCard from './MyCard'
+import SingBook from './MyCard'
 
 import { Container ,Row, Col } from "react-bootstrap"
 
@@ -11,7 +11,7 @@ const Category= ({categor})=>{
                 <hr />
             </Col>
             {
-            categor.slice(1,7).map(book => <MyCard book = {book}/>)
+            categor.slice(1,7).map(book => <SingBook book = {book}/>)
             }
         </Row>
     )
