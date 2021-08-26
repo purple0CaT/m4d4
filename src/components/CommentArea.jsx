@@ -2,41 +2,25 @@
 import { Button } from "react-bootstrap";
 import React from "react";
 import Comments from "../comment";
+import AddComent from "./addComent";
 
 class CommentArea extends React.Component{
     state= {
         reservations: [],
-        comentArr: true,
+        comentArr: false,
         asin: this.props.asin,
         loaded: false
           }
-
-  async componentDidMount() {
-        try {
-          const response = await fetch("https://striveschool-api.herokuapp.com/api/comments/"+this.state.asin, {
-            method: 'GET',
-            headers: {
-                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTFjZjcwZDJkNTI2MjAwMTViNmRjOTkiLCJpYXQiOjE2Mjk5ODUyNzMsImV4cCI6MTYzMTE5NDg3M30.XnwP2w8HYgNw7WtHh0tP8haV9jofgQ_UQ9xJOsb01C4"            }
-        });
-          const data = await response.json()
-          this.state.reservations = data
-          this.setState({loaded : true})
-          console.log(this.state.reservations)
-        } catch(e) {
-          console.log(e);
-        }
-      }
-
 render(){
 
     return(
 <>
-    <Button variant="secondary" onClick={this.loadComent}>Comments</Button>
-    <div className='comments' style={{ display: this.state.comentArr ? 'block' : 'none' }}>
-    {
-    this.state.loaded ? <Comments comentArr = {this.state.reservations[0].comment}/>
-    : <div>none</div>
-    }
+    <Button variant="secondary" onClick={() => this.setState({comentArr : !this.state.comentArr})}>Comments</Button>
+    <div className='comments' style={{ display: this.state.comentArr ? 'flex' : 'none' }}>
+    
+      <Comments asins = {this.state.asin}/>
+      <AddComent comAsin = {this.state.asin} bookName={this.state.title}/>
+    
     </div>
 </>
     )
